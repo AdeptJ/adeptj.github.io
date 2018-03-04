@@ -1,37 +1,110 @@
-## Welcome to GitHub Pages
+<p>
+  
+  <a href="http://www.apache.org/licenses/LICENSE-2.0">
+   <img src="https://img.shields.io/badge/license-Apache%202-blue.svg">  
+  </a>
+  
+  <a href="http://osgi.org">
+   <img src="https://img.shields.io/badge/OSGi-R6-f08d1c.svg?style=flat">
+  </a>
+  
+  <a href="https://travis-ci.org/AdeptJ/adeptj-runtime/builds">
+     <img src="https://api.travis-ci.org/AdeptJ/adeptj-runtime.svg?branch=master&style=flat">
+  </a>
+  
+  <a href="https://gitter.im/AdeptJ/adeptj-runtime?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge">
+    <img src="https://camo.githubusercontent.com/64af58db769a4ad81ae61fac30422b835f495326/68747470733a2f2f6261646765732e6769747465722e696d2f41646570744a2f61646570746a2d72756e74696d652e737667" alt="Join the chat at https://gitter.im/AdeptJ/adeptj-runtime" data-canonical-src="https://badges.gitter.im/AdeptJ/adeptj-runtime.svg" style="max-width:100%;">
+  </a>
+    
+  <a href="https://twitter.com/_AdeptJ">
+     <img src="https://img.shields.io/badge/twitter-AdeptJ-f08d1c.svg?style=social&style=flat"> 
+  </a>
+  
+</p>
 
-You can use the [editor on GitHub](https://github.com/AdeptJ/adeptj.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+**AdeptJ Runtime**
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+**Highly performant, dynamic, modular(OSGi based) runtime for developing/deploying modern WebApps and MicroServices.**
 
-### Markdown
+**Built upon**
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+1. High performance [Undertow](http://undertow.io/) web server.
+2. [OSGi](https://www.osgi.org) Framework R6(Apache Felix as implementation).
 
-```markdown
-Syntax highlighted code block
+**Uber Jar is ~30MB in size with below mentioned modules, starts in ~1500ms and low on resources**
 
-# Header 1
-## Header 2
-### Header 3
+**Minimal runtime(OSGi, Undertow and some supporting bundles) is ~10MB, starts in ~800ms**
 
-- Bulleted
-- List
+**Modules:**
 
-1. Numbered
-2. List
+1. DI (OSGi Declarative Services)
+2. JAX-RS 2.0 (RESTEasy) with JWT support
+3. Web Security Framework
+   - Apache Shiro
+   - ESAPI and related modules - (Only if template engine is opted)
+4. Persistence(SQL/NOSQL)
+   - JPA or MongoDB
+5. Hikari Datasource/JDBC Connection Pool Provider(Only if JPA is opted)
+6. HTML Template Engine - Trimou/Thymeleaf (Optional)
+7. I18n/ResourceBundle Support
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
+The platform embeds OSGi and Undertow with modules described above.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+**Steps to build and run:**
 
-### Jekyll Themes
+1. Clone adeptj-runtime
+2. cd adeptj-runtime
+3. mvn clean package
+4. Above step will create AdeptJ Runtime Uber jar.
+4. Now cd target
+5. java -server -jar adeptj-runtime.jar
+6. Go to [AdeptJ Tools Dashboard](http://localhost:9007/tools/dashboard) or [AdeptJ OSGi Console](http://localhost:9007/system/console)
+7. System will ask for username/password, provide the default ones [admin/admin]
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/AdeptJ/adeptj.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+**Debug options:**
 
-### Support or Contact
+java -server -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000 -jar adeptj-runtime.jar
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Start Parameters and VM arguments
+
+1. For specifying port: -Dadeptj.rt.port=9007
+2. For checking port eagerly: -Dadeptj.rt.port.check=true
+3. Enable AJP: -Denable.ajp=true
+4. Enable HTTP2: -Denable.http2=true
+5. Enable Async Logging: -Dasync.logging=true
+6. Felix Logging Level: -Dfelix.log.level=3
+7. For providing server mode: -Dadeptj.rt.mode=PROD or mode [DEV] is default
+8. Command line argument for launching browser when server starts: launchBrowser=true
+
+**NOTE**: For few modules, work still is in progress. We are pushing hard to complete ASAP.
+
+**Sponsors**:
+
+The AdeptJ Team uses the [Yourkit Java Profiler](https://www.yourkit.com/) when working on the AdeptJ Runtime project.
+
+Many thanks to YourKit for sponsoring our Open Source projects with a license!
+
+<a href="https://www.yourkit.com/">
+    <img src="https://www.yourkit.com/images/yklogo.png"> 
+</a>
+
+YourKit supports open source projects with its full-featured Java Profiler. YourKit, LLC is the creator of [YourKit Java Profiler](https://www.yourkit.com/java/profiler/) and [YourKit .NET Profiler](https://www.yourkit.com/.net/profiler/), innovative and intelligent tools for profiling Java and .NET applications.
+
+**LICENSE**
+
+   Copyright 2016, AdeptJ (http://www.adeptj.com)
+   
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+ 
+       http://www.apache.org/licenses/LICENSE-2.0
+ 
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+
