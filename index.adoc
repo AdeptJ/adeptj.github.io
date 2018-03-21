@@ -1,0 +1,86 @@
+*AdeptJ Runtime*
+
+*Highly performant, dynamic, modular(OSGi based) runtime for developing/deploying modern WebApps and MicroServices.*
+
+*Built upon*
+
+. High performance http://undertow.io/[Undertow] web server.
+. https://www.osgi.org[OSGi] Framework R6(Apache Felix as implementation).
+
+*Uber Jar is ~30MB in size with below mentioned modules, starts in ~1500ms and low on resources*
+
+*Minimal runtime(OSGi, Undertow and some supporting bundles) is ~10MB, starts in ~800ms*
+
+*Modules:*
+
+. DI (OSGi Declarative Services)
+. JAX-RS 2.0 (RESTEasy) with JWT support
+. Web Security Framework
+* Apache Shiro
+* ESAPI and related modules - (Only if template engine is opted)
+. Persistence(SQL/NOSQL)
+* JPA or MongoDB
+. Hikari Datasource/JDBC Connection Pool Provider(Only if JPA is opted)
+. HTML Template Engine - Trimou/Thymeleaf (Optional)
+. I18n/ResourceBundle Support
+
+The platform embeds OSGi and Undertow with modules described above.
+
+*Steps to build and run:*
+
+. Clone adeptj-runtime
+. cd adeptj-runtime
+. mvn clean package
+. Above step will create AdeptJ Runtime Uber jar.
+. Now cd target
+. java -server -jar adeptj-runtime.jar
+. Go to http://localhost:9007/tools/dashboard[AdeptJ Tools Dashboard] or http://localhost:9007/system/console[AdeptJ OSGi Console]
+. System will ask for username/password, provide the default ones [admin/admin]
+
+*Debug options:*
+
+java -server -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000 -jar adeptj-runtime.jar
+
+Start Parameters and VM arguments
+
+. For specifying port: -Dadeptj.rt.port=9007
+. For checking port eagerly: -Dadeptj.rt.port.check=true
+. Enable AJP: -Denable.ajp=true
+. Enable HTTP2: -Denable.http2=true
+. Enable Async Logging: -Dasync.logging=true
+. Felix Logging Level: -Dfelix.log.level=3
+. For providing server mode: -Dadeptj.rt.mode=PROD or mode [DEV] is default
+. Command line argument for launching browser when server starts: launchBrowser=true
+
+*NOTE*: For few modules, work still is in progress. We are pushing hard to complete ASAP.
+
+*Sponsors*:
+
+The AdeptJ Team uses the https://www.yourkit.com/[Yourkit Java Profiler] when working on the AdeptJ Runtime project.
+
+Many thanks to YourKit for sponsoring our Open Source projects with a license!
+
+<a href="https://www.yourkit.com/">
+ <img src="https://www.yourkit.com/images/yklogo.png">
+</a>
+
+YourKit supports open source projects with its full-featured Java Profiler. YourKit, LLC is the creator of https://www.yourkit.com/java/profiler/[YourKit Java Profiler] and https://www.yourkit.com/.net/profiler/[YourKit .NET Profiler], innovative and intelligent tools for profiling Java and .NET applications.
+
+*LICENSE*
+
+Copyright 2016, AdeptJ (http://www.adeptj.com[http://www.adeptj.com])
+
+Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+[source]
+----
+   http://www.apache.org/licenses/LICENSE-2.0
+----
+
+Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
