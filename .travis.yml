@@ -17,11 +17,12 @@ after_failure:
   - docker logs asciidoc-to-html
 
 after_success:
-  - cd output ; cp -R ../images images
-  - cp ../CNAME CNAME
-  - cp ../.gitignore .gitignore
-  - cp ../_config.yml _config.yml
-  - cp ../LICENSE LICENSE
+  - cp CNAME output/CNAME
+  - cp .gitignore output/.gitignore
+  - cp _config.yml output/_config.yml
+  - cp LICENSE output/LICENSE
+  - cp -R images output/images
+  - cd output
   - git init
   - git config user.name "${GT_USER_NAME}"
   - git config user.email "{GT_EMAIL}"
