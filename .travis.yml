@@ -17,11 +17,10 @@ after_failure:
   - docker logs asciidoc-to-html
 
 after_success:
-  - ls
-  - cp CNAME output/ ; cp .gitignore output/ ; cp _config.yml output/ ; cp LICENSE output/ ; cp -R images output/
+  - cp README.md output/ ; cp CNAME output/ ; cp .gitignore output/ ; cp _config.yml output/ ; cp LICENSE output/ ; cp -R images output/
   - cd output
   - git init
   - git config user.name "${GT_USER_NAME}"
   - git config user.email "{GT_EMAIL}"
-  - git add . ; git commit -m "Pushing converted documents."
+  - git add . ; git commit -m "converted documents"
   - git push --force --quiet "https://${GT_TOKEN}@${GT_URL}" master
