@@ -24,4 +24,4 @@ after_success:
   - git config user.name "${GT_USER_NAME}"
   - git config user.email "{GT_EMAIL}"
   - git add . ; git commit -m "Pushing converted documents."
-  - git push --force --quiet "https://${GT_TOKEN}@${GT_URL}" doc
+  - git push --force --quiet "https://${GT_TOKEN}@${GT_URL}" master
