@@ -17,7 +17,7 @@ after_failure:
   - docker logs asciidoc-to-html
 
 after_success:
-  - cp CNAME output/ ; cp .gitignore output/ ; cp _config.yml output/ ; cp LICENSE output/ ; cp -R images output/
+  #- cp CNAME output/ ; cp .gitignore output/ ; cp _config.yml output/ ; cp LICENSE output/ ; cp -R images output/
   - cd output
   - git init
   - git config user.name "${GT_USER_NAME}"
