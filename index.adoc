@@ -1,4 +1,4 @@
-*AdeptJ Runtime*
+= AdeptJ Runtime
 
 *Highly performant, dynamic, modular(OSGi based) runtime for developing/deploying modern WebApps and MicroServices.*
 
