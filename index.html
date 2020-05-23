@@ -431,7 +431,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="paragraph">
-<p><strong>Highly performant, dynamic, modular(OSGi based) runtime for developing/deploying modern WebApps and MicroServices.</strong></p>
+<p><strong>Highly performant, dynamic, modular(OSGi based) runtime for developing modern RESTful applications.</strong></p>
 </div>
 <div class="paragraph">
 <p><strong>Built upon</strong></p>
@@ -447,10 +447,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ol>
 </div>
 <div class="paragraph">
-<p><strong>Uber Jar is ~30MB in size with below mentioned modules, starts in ~1500ms and low on resources</strong></p>
-</div>
-<div class="paragraph">
-<p><strong>Minimal runtime(OSGi, Undertow and some supporting bundles) is ~10MB, starts in ~800ms</strong></p>
+<p><strong>Minimal runnable jar is ~30MB in size with below mentioned modules, starts in ~2500ms and low on resources</strong></p>
 </div>
 <div class="paragraph">
 <p><strong>Modules:</strong></p>
@@ -458,44 +455,36 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>DI (OSGi Declarative Services)</p>
+<p>Dependency Injection (OSGi Declarative Services).</p>
 </li>
 <li>
-<p>JAX-RS 2.1 (RESTEasy) with JWT support</p>
+<p>JAX-RS 2.1 (RESTEasy v4.5.3) with JWT support.</p>
 </li>
 <li>
-<p>Web Security Framework</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Apache Shiro</p>
+<p>JWT module for creating and verifying the JWTs.</p>
 </li>
 <li>
-<p>ESAPI and related modules - (Only if template engine is opted)</p>
-</li>
-</ul>
-</div>
+<p>Persistence(SQL/NO-SQL) layer - JPA(EclipseLink v2.7.7) or MyBatis v3.5.4 or MongoDB v4.0.2.</p>
 </li>
 <li>
-<p>Persistence(SQL/NOSQL)</p>
-<div class="ulist">
-<ul>
-<li>
-<p>JPA or MongoDB</p>
-</li>
-</ul>
-</div>
+<p>Hikari JDBC Connection Pool Provider(Only if JPA or MyBatis is opted).</p>
 </li>
 <li>
-<p>Hikari Datasource/JDBC Connection Pool Provider(Only if JPA is opted)</p>
+<p>Caffeine cache.</p>
 </li>
 <li>
-<p>HTML Template Engine - Trimou/Thymeleaf (Optional)</p>
+<p>Logback loggers - add or remove loggers in running server which will survive the server restart.</p>
 </li>
 <li>
-<p>I18n/ResourceBundle Support</p>
+<p>Crypto module for hashing(BCrypt,PBKDF2WithHmacSHA256 or 384 or 512) and encryption/decryption with (AES/GCM/NoPadding).</p>
+</li>
+<li>
+<p>Java Bean Validation(Hibernate Validator).</p>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>Most of the services are highly configurable using OSGi Configuration Admin.</p>
 </div>
 <div class="paragraph">
 <p>The platform embeds OSGi and Undertow with modules described above.</p>
@@ -506,28 +495,28 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Make sure you have JDK 8+ and Apache Maven 3.2.5+ installed</p>
+<p>Make sure you have JDK 11+ and Apache Maven 3.6.x+ installed</p>
 </li>
 <li>
-<p>Now clone adeptj-runtime</p>
+<p>Since adeptj-runtime needs adeptj-modules therefore clone adeptj-modules and build it locally by running mvn clean install in adeptj-modules base directory.</p>
 </li>
 <li>
-<p>cd adeptj-runtime</p>
+<p>Now come back to the adeptj-runtime directory.</p>
 </li>
 <li>
-<p>From adeptj-runtime directory itself execute - ./etc/build</p>
+<p>From adeptj-runtime directory itself execute this command ./etc/build.sh</p>
 </li>
 <li>
-<p>Above step will create AdeptJ Runtime Uber jar.</p>
+<p>Above step will create AdeptJ Runtime Uber jar with the /lib directory on the classpath.</p>
 </li>
 <li>
-<p>Now from adeptj-runtime directory itself execute - ./bin/start</p>
+<p>Now from adeptj-runtime directory itself execute this command ./bin/start.sh</p>
 </li>
 <li>
-<p>Start script will work on Jdk8, 9, 10 and so on.</p>
+<p>Start script will work on JDK 10 and so on.</p>
 </li>
 <li>
-<p>Go to <a href="http://localhost:9007/tools/dashboard">AdeptJ Tools Dashboard</a> or <a href="http://localhost:9007/system/console">AdeptJ OSGi Console</a></p>
+<p>Go to <a href="http://localhost:9007/system/console">AdeptJ OSGi Console to configure the services.</a></p>
 </li>
 <li>
 <p>System will ask for username/password, provide the default ones [admin/admin]</p>
@@ -538,10 +527,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p><strong>Debug options:</strong></p>
 </div>
 <div class="paragraph">
-<p>java -server -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000 -jar adeptj-runtime.jar</p>
+<p>Start AdeptJ Runtime with jpda option to run it in debug mode(port 8000) i.e ./bin/start.sh jpda</p>
 </div>
 <div class="paragraph">
-<p>Start Parameters and VM arguments</p>
+<p>Start Parameters and VM arguments, most of these provided in start script.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -573,6 +562,23 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="paragraph">
 <p><strong>NOTE</strong>: For few modules, work still is in progress. We are pushing hard to complete ASAP.</p>
+</div>
+ <div class="paragraph">
+<p><strong>Roadmap</strong>:</p>
+  <ol>
+   <li>
+    <p>Extensive code coverage for AdeptJ Runtime and Modules.</p>
+    </li>
+   <li>
+    <p>Modules for popular NoSQL databases.</p>
+    </li>
+   <li>
+    <p>OAuth2(client and server) modules.</p>
+    </li>
+ </ol>
+</div>
+ <div class="paragraph">
+<p><strong>Want to contribute:</strong>: Please feel free to fork the repos or drop a note to me @ irakeshkAToutlookDOTcom</p>
 </div>
 <div class="paragraph">
 <p><strong>Sponsors</strong>:</p>
