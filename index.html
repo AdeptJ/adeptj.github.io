@@ -427,11 +427,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>AdeptJ Runtime</h1>
 </div>
 <div id="content">
 <div class="paragraph">
-<p><strong>Highly performant, dynamic, modular(OSGi based) runtime for developing modern RESTful applications.</strong></p>
+<p><strong>AdeptJ Runtime</strong></p>
+</div>
+<div class="paragraph">
+<p><strong>High performance, dynamic, modular runtime for RESTful APIs, MicroServices and WebApps.</strong></p>
 </div>
 <div class="paragraph">
 <p><strong>Built upon</strong></p>
@@ -439,15 +441,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>High performance <a href="http://undertow.io/">Undertow</a> web server.</p>
+<p>High performance <a href="http://undertow.io/">Undertow</a> v2 web server.</p>
 </li>
 <li>
-<p><a href="https://www.osgi.org">OSGi</a> Framework R7(Apache Felix as implementation).</p>
+<p><a href="https://www.osgi.org">OSGi</a> Framework R8 (Apache Felix as implementation).</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><strong>Minimal runnable jar is ~30MB in size with below mentioned modules, starts in ~2500ms and low on resources</strong></p>
 </div>
 <div class="paragraph">
 <p><strong>Modules:</strong></p>
@@ -458,149 +457,91 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Dependency Injection (OSGi Declarative Services).</p>
 </li>
 <li>
-<p>JAX-RS 2.1 (RESTEasy v4.5.3) with JWT support.</p>
+<p>JAX-RS 2.1 (RESTEasy v5.0.2) with JWT support.</p>
 </li>
 <li>
 <p>JWT module for creating and verifying the JWTs.</p>
 </li>
 <li>
-<p>Persistence(SQL/NO-SQL) layer - JPA(EclipseLink v2.7.7) or MyBatis v3.5.4 or MongoDB v4.0.2.</p>
+<p>Persistence(SQL/NO-SQL) layer - JPA(EclipseLink v2.7.10) or MyBatis v3.5.9 or MongoDB v4.5.0.</p>
 </li>
 <li>
-<p>Hikari JDBC Connection Pool Provider(Only if JPA or MyBatis is opted).</p>
+<p>Hikari(v5.0.1) JDBC Connection Pool Provider(Only if JPA or MyBatis is opted).</p>
 </li>
 <li>
-<p>Caffeine cache.</p>
+<p>Caffeine(v3.0.5) cache.</p>
 </li>
 <li>
 <p>Logback loggers - add or remove loggers in running server which will survive the server restart.</p>
 </li>
 <li>
-<p>Crypto module for hashing(BCrypt,PBKDF2WithHmacSHA256 or 384 or 512) and encryption/decryption with (AES/GCM/NoPadding).</p>
+<p>Crypto module for hashing(BCrypt) and encryption/decryption with (AES/GCM/NoPadding).</p>
 </li>
 <li>
-<p>Java Bean Validation(Hibernate Validator).</p>
+<p>Java Bean Validation(Hibernate Validator v6.2.3).</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
+<p><strong>Toolchain</strong></p>
+<ol>
+<li>
+<p>AdeptJ Maven Plugin for bundle deployment to boost developer productivity.</p>
+</li>
+<li>
 <p>Most of the services are highly configurable using OSGi Configuration Admin.</p>
-</div>
-<div class="paragraph">
-<p>The platform embeds OSGi and Undertow with modules described above.</p>
+</li>
+<li>
+<p>The runtime embeds OSGi Framework and Undertow with modules described above.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p><strong>Steps to build and run:</strong></p>
+<p>Please check <a href="https://github.com/AdeptJ/adeptj-runtime-launcher">AdeptJ Runtime Launcher</a> GitHub Repo for full instructions.</p>
+</div>
+<div class="paragraph">
+<p><strong>Roadmap</strong></p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Make sure you have JDK 11+ and Apache Maven 3.6.x+ installed</p>
+<p>Extensive code coverage for AdeptJ Runtime and Modules.</p>
 </li>
 <li>
-<p>Since adeptj-runtime needs adeptj-modules therefore clone adeptj-modules and build it locally by running mvn clean install in adeptj-modules base directory.</p>
+<p>Modules for popular NoSQL databases.</p>
 </li>
 <li>
-<p>Now come back to the adeptj-runtime directory.</p>
+<p>OAuth2(client and server) modules.</p>
 </li>
 <li>
-<p>From adeptj-runtime directory itself execute this command ./etc/build.sh</p>
-</li>
-<li>
-<p>Above step will create AdeptJ Runtime Uber jar with the /lib directory on the classpath.</p>
-</li>
-<li>
-<p>Now from adeptj-runtime directory itself execute this command ./bin/start.sh</p>
-</li>
-<li>
-<p>Start script will work on JDK 10 and so on.</p>
-</li>
-<li>
-<p>Go to <a href="http://localhost:9007/system/console">AdeptJ OSGi Console to configure the services.</a></p>
-</li>
-<li>
-<p>System will ask for username/password, provide the default ones [admin/admin]</p>
+<p>Embedding the servers such as Tomcat, Jetty etc.</p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p><strong>Debug options:</strong></p>
-</div>
-<div class="paragraph">
-<p>Start AdeptJ Runtime with jpda option to run it in debug mode(port 8000) i.e ./bin/start.sh jpda</p>
-</div>
-<div class="paragraph">
-<p>Start Parameters and VM arguments, most of these provided in start script.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>For specifying port: -Dadeptj.rt.port=9007</p>
-</li>
-<li>
-<p>For checking port eagerly: -Dadeptj.rt.port.check=true</p>
-</li>
-<li>
-<p>Enable AJP: -Denable.ajp=true</p>
-</li>
-<li>
-<p>Enable HTTP2: -Denable.http2=true</p>
-</li>
-<li>
-<p>Enable Async Logging: -Dasync.logging=true</p>
-</li>
-<li>
-<p>Felix Logging Level: -Dfelix.log.level=3</p>
-</li>
-<li>
-<p>For providing server mode: -Dadeptj.rt.mode=PROD or mode [DEV] is default</p>
-</li>
-<li>
-<p>Command line argument for launching browser when server starts: launchBrowser=true</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><strong>NOTE</strong>: For few modules, work still is in progress. We are pushing hard to complete ASAP.</p>
-</div>
- <div class="paragraph">
-<p><strong>Roadmap</strong>:</p>
-  <ol>
-   <li>
-    <p>Extensive code coverage for AdeptJ Runtime and Modules.</p>
-    </li>
-   <li>
-    <p>Modules for popular NoSQL databases.</p>
-    </li>
-   <li>
-    <p>OAuth2(client and server) modules.</p>
-    </li>
- </ol>
-</div>
- <div class="paragraph">
- <p><strong>Want to contribute:</strong></p>
- <p>Please feel free to fork the repos or drop a note to me @ irakeshkAToutlookDOTcom</p>
+<p><strong>Want to contribute</strong></p>
+<p>Please feel free to fork the repos or drop a note to me @ irakeshkAToutlookDOTcom so that I could add you to the AdeptJ organization.</p>
 </div>
 <div class="paragraph">
 <p><strong>Sponsors</strong>:</p>
 </div>
 <div class="paragraph">
-<p>The AdeptJ Team uses the <a href="https://www.yourkit.com/">Yourkit Java Profiler</a> when working on the AdeptJ Runtime project.</p>
+<p>The AdeptJ Team uses the <a href="https://www.jetbrains.com/idea/">IntelliJ Idea Ultimate</a> when working on the AdeptJ Runtime and Modules projects.</p>
 </div>
 <div class="paragraph">
-<p>Many thanks to YourKit for sponsoring our Open Source projects with a license!</p>
+<p>Many thanks to JetBrains for generously sponsoring our Open Source projects with an all products license!</p>
 </div>
 <div class="paragraph">
- <p><a href="https://www.yourkit.com/"><img src="https://www.yourkit.com/images/yklogo.png"></a></p>
-</div>
-<div class="paragraph">
-<p>YourKit supports open source projects with its full-featured Java Profiler. YourKit, LLC is the creator of <a href="https://www.yourkit.com/java/profiler/">YourKit Java Profiler</a> and <a href="https://www.yourkit.com/.net/profiler/">YourKit .NET Profiler</a>, innovative and intelligent tools for profiling Java and .NET applications.</p>
+<p>&lt;a href="https://www.jetbrains.com"&gt;
+ &lt;img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg"&gt;
+&lt;/a&gt;</p>
 </div>
 <div class="paragraph">
 <p><strong>LICENSE</strong></p>
 </div>
 <div class="paragraph">
-<p>Copyright 2016, AdeptJ (<a href="http://www.adeptj.com">http://www.adeptj.com</a>)</p>
+<p>Copyright 2016-2022, AdeptJ (<a href="https://www.adeptj.com">https://www.adeptj.com</a>)</p>
 </div>
 <div class="paragraph">
 <p>Licensed under the Apache License, Version 2.0 (the "License");
@@ -609,7 +550,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>   http://www.apache.org/licenses/LICENSE-2.0</code></pre>
+<pre class="highlight"><code>   https://www.apache.org/licenses/LICENSE-2.0</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -622,7 +563,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-05-23 12:39:18 PM IST
+Last updated 2018-03-22 18:11:17 UTC
 </div>
 </div>
 </body>
