@@ -441,7 +441,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>High performance <a href="http://undertow.io/">Undertow</a> v2 web server.</p>
+<p>Battle tested <a href="https://tomcat.apache.org/">Tomcat</a>/<a href="https://www.eclipse.org/jetty/">Jetty</a>/<a href="http://undertow.io/">Undertow</a> Servlet containers.</p>
 </li>
 <li>
 <p><a href="https://www.osgi.org">OSGi</a> Framework R8 (Apache Felix as implementation).</p>
@@ -454,31 +454,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Dependency Injection (OSGi Declarative Services).</p>
+<p>Dependency Injection (OSGi Declarative Services) Felix SCR v2.2.6.</p>
 </li>
 <li>
-<p>JAX-RS 2.1 (RESTEasy v5.0.2) with JWT support.</p>
+<p>JAX-RS 3.1(RESTEasy v6.2.4) with JWT support</p>
 </li>
 <li>
-<p>JWT module for creating and verifying the JWTs.</p>
+<p>JWT module for creating and verifying the JWTs issued by AdeptJ Runtime and verification of JWT issued by third party systems.</p>
 </li>
 <li>
-<p>Persistence (SQL/NO-SQL) layer - JPA (EclipseLink v2.7.10) or MyBatis v3.5.9 or MongoDB v4.5.0.</p>
+<p>Persistence(SQL/NO-SQL) layer - JPA 3.1(EclipseLink v4.0.2) or MyBatis v3.5.13 or MongoDB sync driver v4.10.2.</p>
 </li>
 <li>
 <p>Hikari (v5.0.1) JDBC Connection Pool Provider (Only if JPA or MyBatis is opted).</p>
 </li>
 <li>
-<p>Caffeine(v3.0.5) cache.</p>
+<p>Caffeine(v3.1.7) - a high performance in memory cache.</p>
 </li>
 <li>
-<p>Logback loggers - add or remove loggers in running server which will survive the server restart.</p>
+<p>SLF4J(v2.0.7) & Logback(v1.4.8) based logging - add or remove loggers in running server which will survive the server restart.</p>
 </li>
 <li>
-<p>Crypto module for hashing (BCrypt) and encryption/decryption with (AES/GCM/NoPadding).</p>
+<p>Crypto module for hashing(BCrypt) and encryption/decryption with (AES/GCM/NoPadding) based on battle tested Spring Security crypto.</p>
 </li>
 <li>
-<p>Java Bean Validation (Hibernate Validator v6.2.3).</p>
+<p>Java Bean Validation(Hibernate Validator v8.0.1)</p>
+</li>
+<li>
+<p>RestClient for server side API calls, there are few adapters based on Apache HttpClient v4.x and Jetty HttpClient v11.x.</p>
+</li>
+<li>
+<p>Email module for sending plain text and html based emails using Eclipse Angus Mail.</p>
 </li>
 </ol>
 </div>
@@ -492,7 +498,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <p>Most of the services are highly configurable using OSGi Configuration Admin.</p>
 </li>
 <li>
-<p>The runtime embeds OSGi Framework and Undertow with modules described above.</p>
+<p>The runtime embeds OSGi Framework and (Undertow or Tomcat or Jetty) as per server adapter selected along with modules described above.</p>
 </li>
 </ol>
 </div>
@@ -513,9 +519,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li>
 <p>OAuth2(client and server) modules.</p>
-</li>
-<li>
-<p>Embedding the servers such as Tomcat, Jetty etc.</p>
 </li>
 </ol>
 </div>
